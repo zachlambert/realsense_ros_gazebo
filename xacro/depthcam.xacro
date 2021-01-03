@@ -222,8 +222,8 @@
         <depthUpdateRate>${rate}</depthUpdateRate>
         <colorUpdateRate>${rate}</colorUpdateRate>
         <infraredUpdateRate>${rate}</infraredUpdateRate>
-        <depthTopicName>depth/image_raw</depthTopicName>
-        <depthCameraInfoTopicName>depth/camera_info</depthCameraInfoTopicName>
+        <depthTopicName>aligned_depth_to_color/image_raw</depthTopicName>
+        <depthCameraInfoTopicName>aligned_depth_to_color/camera_info</depthCameraInfoTopicName>
         <colorTopicName>color/image_raw</colorTopicName>
         <colorCameraInfoTopicName>color/camera_info</colorCameraInfoTopicName>
         <infrared1TopicName>infra1/image_raw</infrared1TopicName>
@@ -424,8 +424,8 @@
           <depthUpdateRate>${rate}</depthUpdateRate>
           <colorUpdateRate>${rate}</colorUpdateRate>
           <infraredUpdateRate>${rate}</infraredUpdateRate>
-          <depthTopicName>depth/image_raw</depthTopicName>
-          <depthCameraInfoTopicName>depth/camera_info</depthCameraInfoTopicName>
+          <depthTopicName>aligned_depth_to_color/image_raw</depthTopicName>
+          <depthCameraInfoTopicName>aligned_depth_to_color/camera_info</depthCameraInfoTopicName>
           <colorTopicName>color/image_raw</colorTopicName>
           <colorCameraInfoTopicName>color/camera_info</colorCameraInfoTopicName>
           <infrared1TopicName>infra1/image_raw</infrared1TopicName>
