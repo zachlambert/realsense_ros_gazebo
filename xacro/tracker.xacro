@@ -90,14 +90,13 @@
 
     <!-- Removed joint to parent link. Add externally. -->
 
-    <joint name="${sensor_name}_pose_frame_joint" type="fixed">
-        <parent link="${sensor_name}_odom_frame"/>
-        <child link="${sensor_name}_pose_frame"/>
-        <origin rpy="0 0 0" xyz="0 0 0"/> <!-- check on real hw -->
+    <link name="${sensor_name}_pose_frame"/>
+    <joint name="${sensor_name}_pose_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <parent link="${sensor_name}_pose_frame"/>
+        <child link="${sensor_name}_link"/>
     </joint>
-    <link name="${sensor_name}_odom_frame"/>
-
-    <link name="${sensor_name}_pose_frame">
+    <link name="${sensor_name}_link">
         <visual>
             <origin rpy="1.57 0 1.57" xyz="0 0 0"/>
             <geometry>
@@ -120,13 +119,6 @@
                      izz="8.931e-05"/>
         </inertial>
     </link>
-
-    <joint name="${sensor_name}_joint" type="fixed">
-        <parent link="${sensor_name}_pose_frame"/>
-        <child link="${sensor_name}_link"/>
-        <origin rpy="0 0 0" xyz="0 0 0"/> <!-- check on real hw -->
-    </joint>
-    <link name="${sensor_name}_link"/>
 
     <joint name="${sensor_name}_fisheye1_joint" type="fixed">
         <parent link="${sensor_name}_link"/>
@@ -183,7 +175,7 @@
             <visualize>false</visualize>
             <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
                 <topicName>${sensor_name}/gyro/sample</topicName>
-                <bodyName>${sensor_name}_pose_frame</bodyName>
+                <bodyName>${sensor_name}_link</bodyName>
                 <updateRateHZ>${rate}</updateRateHZ>
                 <gaussianNoise>0.000001</gaussianNoise>
                 <xyzOffset>0 0 0</xyzOffset>
@@ -204,7 +196,7 @@
         <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
             <alwaysOn>true</alwaysOn>
             <updateRate>${rate}</updateRate>
-            <bodyName>${sensor_name}_odom_frame</bodyName>
+            <bodyName>${sensor_name}_pose_frame</bodyName>
             <topicName>${sensor_name}/odom/sample</topicName>
             <gaussianNoise>0.001</gaussianNoise>
             <frameName>world</frameName>
