@@ -86,13 +86,9 @@
 
   <!-- INTEL REALSENSE T265 -->
 
-  <xacro:macro name="realsense_T265" params="sensor_name parent_link rate *origin">
+  <xacro:macro name="realsense_T265" params="sensor_name rate *origin">
 
-    <joint name="${sensor_name}_odom_frame_joint" type="fixed">
-        <parent link="${parent_link}"/>
-        <child link="${sensor_name}_odom_frame"/>
-        <xacro:insert_block name="origin"/>
-    </joint>
+    <!-- Removed joint to parent link. Add externally. -->
 
     <joint name="${sensor_name}_pose_frame_joint" type="fixed">
         <parent link="${sensor_name}_odom_frame"/>
