@@ -86,16 +86,10 @@
 
   <!-- INTEL REALSENSE T265 -->
 
-  <xacro:macro name="realsense_T265" params="sensor_name rate *origin">
+  <xacro:macro name="realsense_T265" params="sensor_name rate">
 
     <!-- Removed joint to parent link. Add externally. -->
 
-    <link name="${sensor_name}_pose_frame"/>
-    <joint name="${sensor_name}_pose_joint" type="fixed">
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <parent link="${sensor_name}_pose_frame"/>
-        <child link="${sensor_name}_link"/>
-    </joint>
     <link name="${sensor_name}_link">
         <visual>
             <origin rpy="1.57 0 1.57" xyz="0 0 0"/>
@@ -196,7 +190,7 @@
         <plugin name="p3d_base_controller" filename="libgazebo_ros_p3d.so">
             <alwaysOn>true</alwaysOn>
             <updateRate>${rate}</updateRate>
-            <bodyName>${sensor_name}_pose_frame</bodyName>
+            <bodyName>${sensor_name}_link</bodyName>
             <topicName>${sensor_name}/odom/sample</topicName>
             <gaussianNoise>0.001</gaussianNoise>
             <frameName>world</frameName>
